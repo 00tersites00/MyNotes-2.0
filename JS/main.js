@@ -5,6 +5,9 @@ const filtroTitulo = document.getElementById("filter-title");
 const filtroFavoritos = document.getElementById("filter-favorites");
 
 btn_agregar_note.addEventListener("click", ()=>{
+    if (window.innerWidth < 768) {
+        document.getElementById("div-side-bar").remove();
+    }
     completarPanelControl("newNote");
 })
 
