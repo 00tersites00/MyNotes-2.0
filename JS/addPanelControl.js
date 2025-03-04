@@ -79,6 +79,47 @@ const completarPanelControl = (type, note_element, id)=>{
             divInputs.appendChild(button);
             divInputs.appendChild(ul);
 
+            button.addEventListener("click", ()=>{
+                let ulTasks = document.getElementById("ul-tasks");
+
+                const li = document.createElement('li');
+                li.classList.add('row', 'text-light', 'justify-content-between', 'align-items-center', 'gap-1', "liTask");
+
+                const iconSquare = document.createElement('i');
+                iconSquare.classList.add('bi', 'bi-square', 'col-md-1', 'fs-3', "icon-task");
+                iconSquare.setAttribute("activo", "false");
+                
+                iconSquare.addEventListener("click", ()=>{
+                    if(iconSquare.getAttribute("activo") == "false"){
+                        iconSquare.className = "";
+                        iconSquare.classList.add('bi', 'bi-check-square', 'col-1', 'fs-3', "icon-task");
+                        iconSquare.setAttribute("activo", "true");
+                    } else if(iconSquare.getAttribute("activo") == "true"){
+                        iconSquare.className = "";
+                        iconSquare.classList.add('bi', 'bi-square', 'col-1', 'fs-3', "icon-task");
+                        iconSquare.setAttribute("activo", "false");
+                    }
+                })
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = 'Task';
+                input.classList.add('col-md-9', 'm-0', 'input-text-task', 'bg-dark', 'fs-5', 'text-light', 'py-1');
+
+                const iconTrash = document.createElement('i');
+                iconTrash.classList.add('bi', 'bi-trash3-fill', 'fs-3', 'col-md-1', 'ml-2', "icon-task");
+
+                iconTrash.addEventListener("click", ()=>{
+                    event.target.closest("li").remove();
+                });
+
+                li.appendChild(iconSquare);
+                li.appendChild(input);
+                li.appendChild(iconTrash);
+
+                ulTasks.appendChild(li);
+            })
+
             ul.innerHTML = "";
 
             note_element.contenido.forEach(tarea => {
@@ -93,10 +134,10 @@ const completarPanelControl = (type, note_element, id)=>{
                 // Evento para cambiar estado
                 iconSquare.addEventListener("click", () => {
                     if (iconSquare.getAttribute("activo") === "false") {
-                        iconSquare.className = "bi bi-check-square col-md-1 fs-3 icon-task";
+                        iconSquare.className = "bi bi-check-square col-1 fs-3 icon-task";
                         iconSquare.setAttribute("activo", "true");
                     } else {
-                        iconSquare.className = "bi bi-square col-md-1 fs-3 icon-task";
+                        iconSquare.className = "bi bi-square col-1 fs-3 icon-task";
                         iconSquare.setAttribute("activo", "false");
                     }
                 });
@@ -173,17 +214,17 @@ const completarPanelControl = (type, note_element, id)=>{
                 li.classList.add('row', 'text-light', 'justify-content-between', 'align-items-center', 'gap-1', "liTask");
 
                 const iconSquare = document.createElement('i');
-                iconSquare.classList.add('bi', 'bi-square', 'col-md-1', 'fs-3', "icon-task");
+                iconSquare.classList.add('bi', 'bi-square', 'col-1', 'fs-3', "icon-task");
                 iconSquare.setAttribute("activo", "false");
                 
                 iconSquare.addEventListener("click", ()=>{
                     if(iconSquare.getAttribute("activo") == "false"){
                         iconSquare.className = "";
-                        iconSquare.classList.add('bi', 'bi-check-square', 'col-md-1', 'fs-3', "icon-task");
+                        iconSquare.classList.add('bi', 'bi-check-square', "col-1", 'fs-3', "icon-task");
                         iconSquare.setAttribute("activo", "true");
                     } else if(iconSquare.getAttribute("activo") == "true"){
                         iconSquare.className = "";
-                        iconSquare.classList.add('bi', 'bi-square', 'col-md-1', 'fs-3', "icon-task");
+                        iconSquare.classList.add('bi', 'bi-square',"col-1", 'fs-3', "icon-task");
                         iconSquare.setAttribute("activo", "false");
                     }
                 })
@@ -191,10 +232,10 @@ const completarPanelControl = (type, note_element, id)=>{
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.placeholder = 'Task';
-                input.classList.add('col-md-9', 'm-0', 'input-text-task', 'bg-dark', 'fs-5', 'text-light', 'py-1');
+                input.classList.add('col-md-9',"col-8", 'm-0', 'input-text-task', 'bg-dark', 'fs-5', 'text-light', 'py-1');
 
                 const iconTrash = document.createElement('i');
-                iconTrash.classList.add('bi', 'bi-trash3-fill', 'fs-3', 'col-md-1', 'ml-2', "icon-task");
+                iconTrash.classList.add('bi', 'bi-trash3-fill', 'fs-3', 'col-md-1',"col-2" , 'ml-2', "icon-task");
 
                 iconTrash.addEventListener("click", ()=>{
                     event.target.closest("li").remove();
